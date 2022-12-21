@@ -32,25 +32,25 @@ function Keyboard() {
     }, [handleKeyboard])
 
     return (
-        <div className='keyboard'>
+        <div className='keyboard' >
             <div className='line1'>{
-                keys1.map((key) => {
-                    return <Key val={key} />
+                keys1.map((key, i) => {
+                    return <Key val={key} key={i+100} />
                 })
             }</div>
             <div className='line2'>{
-                keys2.map((key) => {
-                    return <Key val={key} />
+                keys2.map((key,i) => {
+                    return <Key val={key} key={i+200}/>
                 })
             }</div>
             <div className='line3'>
-                <Key val={"Enter"} big/>
+                <Key val={"Enter"} key={123123} big/>
                 {
-                    keys3.map((key) => {
-                        return <Key val={key} />
+                    keys3.map((key,i) => {
+                        return <Key val={key} key={i+300} />
                     })
                 }
-                <Key val={"Delete"} big />
+                <Key val={"Delete"} big key={5123}/>
             </div>
         </div>
     )

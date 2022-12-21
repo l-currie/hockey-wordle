@@ -17,19 +17,23 @@ function TeamSelect() {
             })
     }, [])
 
+    function doSelectTeam(){
+        selectTeam()
+    }
+
     if (isLoading) {
         return <div>loading...</div>
     }
     return (
         <div>
             <select name='teams' id='teamsDropdown'>
-                {console.log('teamsData')}
-                {console.log(teamsData)}
+                {/* {console.log('teamsData')} */}
+                {/* {console.log(teamsData)} */}
                 {teamsData.map((team, i) => {
-                    return <option value={i}>{team.teamName}</option>
+                    return <option value={i} key={i}>{team.teamName}</option>
                 })}
             </select>
-            <button onClick={() => {selectTeam()}}>asd</button>
+            <button onClick={() => {doSelectTeam()}}>Select Team</button>
         </div >
     )
 }
