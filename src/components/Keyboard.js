@@ -17,8 +17,10 @@ function Keyboard() {
         } else if (e.key === "Backspace" || e.key === "Delete") {
             deleteLetter()
         } else {
-            if (e.keyCode >= 65 && e.keyCode <= 95) {
+            if (e.keyCode >= 65 && e.keyCode <= 90) {
                 selectLetter(String.fromCharCode(e.keyCode))
+            } else if (e.keyCode === 189) {
+                selectLetter('-')
             }
         }
     })

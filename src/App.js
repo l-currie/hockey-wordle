@@ -63,8 +63,8 @@ function App() {
 
     function enterKey() {
         if (attemptCorrect()) return handleWin()
-        else if (currAttempt.attempt === 5) return handleLoss()
-        if (currAttempt.letterPos !== (correctWord.length)) return
+        else if (currAttempt.attempt === 5 & (currAttempt.letterPos === correctWord.length)) return handleLoss()
+        if (currAttempt.letterPos !== (correctWord.length)) return undefined
         setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
         console.log(board)
     }
@@ -94,7 +94,7 @@ function App() {
         setOpenModal(false)
     }
 
-    function selectTeam() { 
+    function selectTeam() {
         var index = document.getElementById('teamsDropdown').value
         var id = teamsData[index].id
         Axios.get('https://statsapi.web.nhl.com/api/v1/teams/' + id + '/roster')
@@ -104,17 +104,21 @@ function App() {
                 console.log(len)
                 var playerIndex = Math.floor(Math.random() * len)
                 var newCorrect = String((String(response.data.roster[playerIndex].person.fullName)).split(' ').slice(-1)).toUpperCase()
-                console.log(newCorrect)
-                hint = "The players position is: "
+                // Ensure we get a new player
+                while (newCorrect === correctWord) {
+                    playerIndex = Math.floor(Math.random() * len)
+                    newCorrect = String((String(response.data.roster[playerIndex].person.fullName)).split(' ').slice(-1)).toUpperCase()
+                }
+                hint = "Hint: the players position is: "
                 var hint = hint + String(response.data.roster[playerIndex].position.type)
                 setHintData(hint)
-                setCurrAttempt({attempt: 0, letterPos: 0})
+                setCurrAttempt({ attempt: 0, letterPos: 0 })
                 setCorrectWord(newCorrect)
             })
     }
 
     if (isLoading) return <board></board>
-    
+
     if (!isLoading) return (
         <div className="App">
             <nav>
@@ -127,10 +131,10 @@ function App() {
                 <TeamSelect />
                 <div className='temp'>
                     <div className='game'>
+                        {(currAttempt.attempt > 2) && <div>{hintData}</div>}
                         {openModal && <Modal closeModal={closeModal} text={modalText} />}
                         <Board board={board} />
                         <Keyboard />
-                        {(currAttempt.attempt > 2) && <div>{hintData}</div>}
                     </div>
                 </div>
             </AppContext.Provider>

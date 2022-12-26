@@ -27,8 +27,6 @@ function TeamSelect() {
     return (
         <div>
             <select name='teams' id='teamsDropdown'>
-                {/* {console.log('teamsData')} */}
-                {/* {console.log(teamsData)} */}
                 {teamsData.map((team, i) => {
                     return <option value={i} key={i}>{team.teamName}</option>
                 })}
