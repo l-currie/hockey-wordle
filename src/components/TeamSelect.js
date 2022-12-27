@@ -17,7 +17,7 @@ function TeamSelect() {
             })
     }, [])
 
-    function doSelectTeam(){
+    function doSelectTeam() {
         selectTeam()
     }
 
@@ -25,14 +25,15 @@ function TeamSelect() {
         return <div>loading...</div>
     }
     return (
-        <div>
+        <div className='padTop'>
             <select name='teams' id='teamsDropdown'>
                 {teamsData.map((team, i) => {
                     return <option value={i} key={i}>{team.teamName}</option>
                 })}
             </select>
-            <button onClick={() => {doSelectTeam()}}>Select Team</button>
-        </div >
+            <button className='selectButton' onClick={() => {doSelectTeam()}}>Select Team</button>
+        </div>
+
     )
 }
 

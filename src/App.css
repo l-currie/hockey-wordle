@@ -36,7 +36,7 @@ nav h1 {
   height: calc(100vh - 170px);
   display: flex;
   align-items: center;
-  padding-top: 50px;
+  padding-top: .75cm;
   flex-direction: column;
 }
 
@@ -117,10 +117,19 @@ nav h1 {
   display: grid;
   place-items: center;
   font-size: 20px;
-  background-color: rgb(104, 103, 103);
+  background-color: #686767;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
+  scale: 100%;
+  transition-duration: 300ms;
+}
+
+.key:hover{
+  color: #686767;
+  background-color: #fff;
+  scale: 110%;
+  transition-duration: 300ms;
 }
 
 #big {
@@ -128,4 +137,49 @@ nav h1 {
 }
 #disabled {
   background-color: #3a393c;
+}
+
+.padTop{
+  padding-top: .75cm;
+}
+
+.selectButton{
+  background: #121212;
+  margin-left: 10px;
+  padding: 5px;
+  border: 2px solid #acaaaa;
+  color: #fff
+}
+
+.selectButton:hover{
+  color:#121212;
+  background: #acaaaa;
+}
+  
+select{
+  background: #121212;
+  border: 2px solid grey;
+  color: #fff;
+  padding: 5px;
+}
+
+select:hover{
+  color:#121212;
+  background: #acaaaa;
+}
+
+select:focus{
+  color:#121212;
+  background: #acaaaa;
+}
+
+.title{
+  user-select: none;
+  scale: 100%;
+  transition-duration: 300ms;
+}
+
+.title:hover{
+  scale: 110%;
+  transition-duration: 300ms;
 }

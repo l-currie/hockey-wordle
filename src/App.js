@@ -122,13 +122,14 @@ function App() {
     if (!isLoading) return (
         <div className="App">
             <nav>
-                <h1> Hockey Wordle </h1>
+                <h1 className='title'> Hockey Wordle </h1>
             </nav>
             {/* context API.  Everything in this provider tag gets access to the states
       we pass since they are under the provider*/}
 
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, selectLetter, enterKey, deleteLetter, correctWord, teamsData, setTeamsData, selectTeam }}>
-                <TeamSelect />
+                
+            <TeamSelect />
                 <div className='temp'>
                     <div className='game'>
                         {(currAttempt.attempt > 2) && <div>{hintData}</div>}
