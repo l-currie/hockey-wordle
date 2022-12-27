@@ -13,12 +13,14 @@ function Keyboard() {
 
     const handleKeyboard = useCallback((e) => {
         if(e.key === "Enter") {
+            e.preventDefault()
             enterKey()
         } else if (e.key === "Backspace" || e.key === "Delete") {
             deleteLetter()
         } else {
             if (e.keyCode >= 65 && e.keyCode <= 90) {
                 selectLetter(String.fromCharCode(e.keyCode))
+                //handle '-' since some players have a '-' in their lastname
             } else if (e.keyCode === 189) {
                 selectLetter('-')
             }

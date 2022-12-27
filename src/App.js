@@ -44,7 +44,7 @@ function App() {
     }, [correctWord])
 
     function selectLetter(val) {
-        console.log('selecting letter')
+        // console.log('selecting letter')
         if (currAttempt.letterPos > correctWord.length - 1) return;
         const newBoard = [...board]
         newBoard[currAttempt.attempt][currAttempt.letterPos] = val
@@ -66,7 +66,7 @@ function App() {
         else if (currAttempt.attempt === 5 & (currAttempt.letterPos === correctWord.length)) return handleLoss()
         if (currAttempt.letterPos !== (correctWord.length)) return undefined
         setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
-        console.log(board)
+        // console.log(board)
     }
 
     function handleLoss() {
@@ -99,9 +99,9 @@ function App() {
         var id = teamsData[index].id
         Axios.get('https://statsapi.web.nhl.com/api/v1/teams/' + id + '/roster')
             .then(response => {
-                console.log('team roster')
+                // console.log('team roster')
                 var len = response.data.roster.length
-                console.log(len)
+                // console.log(len)
                 var playerIndex = Math.floor(Math.random() * len)
                 var newCorrect = String((String(response.data.roster[playerIndex].person.fullName)).split(' ').slice(-1)).toUpperCase()
                 // Ensure we get a new player
@@ -133,9 +133,9 @@ function App() {
                 <div className='temp'>
                     <div className='game'>
                         {(currAttempt.attempt > 2) && <div>{hintData}</div>}
-                        {openModal && <Modal closeModal={closeModal} text={modalText} />}
                         <Board board={board} />
                         <Keyboard />
+                        {openModal && <Modal closeModal={closeModal} text={modalText} />}
                     </div>
                 </div>
             </AppContext.Provider>

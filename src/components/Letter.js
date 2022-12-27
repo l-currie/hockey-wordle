@@ -11,23 +11,26 @@ function Letter({ letterPos, attemptValue }) {
         return letter === correctWord.substring(letterPos, letterPos+1) ? true : false
     }
     const isContained = () => {
-        for (let i = 0; i < correctWord.length; i++) {
-            if (correctWord.substring(i, i+1) === letter) return true
+        var numLeftInWord = 0
+        for(let i = 0; i < correctWord.length; i++){
+            if (correctWord.substring(i, i+1).toUpperCase() === letter.toUpperCase()) numLeftInWord++
         }
-        return false
+        for (let j = 0; j < correctWord.length; j++) {
+            if (board[attemptValue][j] === letter.toUpperCase() & (correctWord.substring(j,j+1) === letter.toUpperCase())){
+                numLeftInWord--
+            }
+        }
+
+        return numLeftInWord > 0 ? true : false
     }
 
     const getId = () => {
-        if (board[attemptValue][letterPos] == '') return 
+        if (board[attemptValue][letterPos] === '') return 
         if (isCorrect()) return "correct"
         else if (isContained()) return "contain"
         else return "error"
     }
     return (
-        // Use the letters id=? (correct / almost / error / default) for color
-        // use conditionals to figure out of correct (if the letter in same pos is same letter)
-        // substring (i, i+1) to get the char in word, compare to letter, loop through word to see if matches 
-        // error = default gray
         <div className='letter' id={attemptValue < currAttempt.attempt ? getId() : "" }> {letter}</div>
     )
 }

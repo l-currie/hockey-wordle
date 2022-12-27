@@ -12,10 +12,18 @@ function TeamSelect() {
     useEffect(() => {
         Axios.get('https://statsapi.web.nhl.com/api/v1/teams')
             .then(response => {
-                setTeamsData(response.data.teams)
+                let sortedResponse = response.data.teams.sort(compareTeams)
+                // console.log(sortedResponse)
+                setTeamsData(sortedResponse)
                 setIsLoading(false)
             })
     }, [])
+
+    function compareTeams(team1, team2) {
+    if(team1.teamName < team2.teamName) return -1
+    else if (team1.teamName > team2.teamName) return 1
+    else return 0
+    }
 
     function doSelectTeam() {
         selectTeam()
@@ -24,6 +32,7 @@ function TeamSelect() {
     if (isLoading) {
         return <div>loading...</div>
     }
+    
     return (
         <div className='padTop'>
             <select name='teams' id='teamsDropdown'>
@@ -31,7 +40,7 @@ function TeamSelect() {
                     return <option value={i} key={i}>{team.teamName}</option>
                 })}
             </select>
-            <button className='selectButton' onClick={() => {doSelectTeam()}}>Select Team</button>
+            <button className='selectButton' id='selectButton' onClick={() => {doSelectTeam()}}>Select Team</button>
         </div>
 
     )
