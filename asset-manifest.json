@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/hockey-wordle/static/css/main.41a3b783.css",
+    "main.js": "/hockey-wordle/static/js/main.937b1f70.js",
+    "static/js/787.f5553b06.chunk.js": "/hockey-wordle/static/js/787.f5553b06.chunk.js",
+    "index.html": "/hockey-wordle/index.html",
+    "main.41a3b783.css.map": "/hockey-wordle/static/css/main.41a3b783.css.map",
+    "main.937b1f70.js.map": "/hockey-wordle/static/js/main.937b1f70.js.map",
+    "787.f5553b06.chunk.js.map": "/hockey-wordle/static/js/787.f5553b06.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.41a3b783.css",
+    "static/js/main.937b1f70.js"
+  ]
+}
